@@ -1,0 +1,9 @@
+click==6.7
+-e git+https://github.com/damiansoriano/Contexts.git@4ad390aa4f514eff94b8ef43f6da0b404e42e1a7#egg=Contexts
+expects==0.8.0
+Inject==3.3.1
+multidict==3.1.3
+mypy==0.521
+-e git+git@github.com:madedotcom/photon-pump.git@c43af572b673fc62f5e68d72c90e814589697810#egg=photon_pump
+pybreaker==0.4.0
+retrying==1.3.3
