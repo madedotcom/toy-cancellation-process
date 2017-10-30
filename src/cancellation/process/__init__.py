@@ -6,6 +6,13 @@ from uuid import UUID
 OrderId = NewType('LocationCode', str)
 CancellationId = NewType('CancellationId', UUID)
 
+
+class WarehouseMinion:
+
+    def tell(self, cmd):
+        pass
+
+
 class Cancellation(model.Aggregate):
 
     @event_type('cancellation_requested')
@@ -14,8 +21,9 @@ class Cancellation(model.Aggregate):
         order_id: OrderId
 
 
-    def __init__(self, events=[]):
+    def __init__(self, events=[], warehouse=None):
         self.id = "not-started"
+        self.warehouse = warehouse or WarehouseMinion()
         model.Aggregate.__init__(self, events)
 
     @classmethod
@@ -29,3 +37,4 @@ class Cancellation(model.Aggregate):
     def on_started(self, e):
         self.id = e.cancellation_id
         self.order_id = e.order_id
+        self.warehouse.tell(messages.CancelOrder(self.order_id))
