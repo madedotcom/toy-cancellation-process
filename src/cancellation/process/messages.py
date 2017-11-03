@@ -1,6 +1,5 @@
 import typing
 
 
-class CancelOrder(typing.NamedTuple):
-
+class RequestCancellationFromWarehouse(typing.NamedTuple):
     order_id: str
